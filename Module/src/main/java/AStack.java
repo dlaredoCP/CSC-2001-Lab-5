@@ -1,8 +1,15 @@
+import com.sun.jdi.InvalidCodeIndexException;
+
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class AStack {
     private int length;
     private String[] stackArr;
+
+    public int size(){
+        return length;
+    }
 
     public AStack(int length, String[] stackArr) {
         this.length = length;
@@ -31,6 +38,34 @@ public class AStack {
             stackArr = newArr;
             length++;
         }
+    }
+
+    /** Removes and returns the top element. If there is no such element, raises an IndexError exception */
+    public String pop(){
+        if (length==0){
+            throw new IndexOutOfBoundsException();
+        } else{
+            String [] newArr = new String[stackArr.length-1];
+            String top = stackArr[stackArr.length-1];
+            System.arraycopy(stackArr, 0, newArr, 0, length-1);
+            stackArr = newArr;
+            length--;
+            return top;
+        }
+    }
+
+    /** Returns the top element, but does not remove it. If there is no such element, raises an IndexError exception */
+    public String peek(){
+        if (length==0){
+            throw new IndexOutOfBoundsException();
+        } else{
+            return stackArr[length-1];
+        }
+    }
+
+    /** Returns true when the stack contains no elements */
+    public boolean is_empty(){
+        return length==0;
     }
 
 }
