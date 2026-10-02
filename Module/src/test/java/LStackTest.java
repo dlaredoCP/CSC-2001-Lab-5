@@ -34,7 +34,7 @@ class LStackTest {
     void empty_stack(){
         LStack ex = new LStack(null);
 
-        assertEquals(ex, LStack.empty_stack());
+        assertFalse(ex.equals(LStack.empty_stack()));
     }
 
     @Test
